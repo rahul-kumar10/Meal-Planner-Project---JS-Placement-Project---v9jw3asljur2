@@ -460,7 +460,7 @@ fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78
 let mealDataJson = JSON.parse(localStorage.getItem('meal'));
 console.log(mealDataJson)
 let mealData;
-if (mealDataJson === undefined) {
+if (mealDataJson === null) {
     mealData = mealDataHardCoded;
 }
 else {
@@ -475,7 +475,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?a
 
 let breakfastDataJson = JSON.parse(localStorage.getItem('breakfast'));
 let breakfastData;
-if (breakfastDataJson === undefined) {
+if (breakfastDataJson === null) {
     breakfastData = mealRecipeDataHardCoded;
 }
 else {
@@ -490,7 +490,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/nutritionWidg
 
 let breakfastCalorieDataJson = JSON.parse(localStorage.getItem('breakfastCalorie'));
 let breakfastCalorieData;
-if (breakfastCalorieDataJson === undefined) {
+if (breakfastCalorieDataJson === null) {
     breakfastCalorieData = calorieDataHardCoded;
 }
 else {
@@ -505,7 +505,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/information?a
 
 let lunchDataJson = JSON.parse(localStorage.getItem('lunch'));
 let lunchData;
-if (lunchDataJson === undefined) {
+if (lunchDataJson === null) {
     lunchData = mealRecipeDataHardCoded;
 }
 else {
@@ -520,7 +520,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/nutritionWidg
 
 let lunchCalorieDataJson = JSON.parse(localStorage.getItem('lunchCalorie'));
 let lunchCalorieData;
-if (lunchCalorieDataJson === undefined) {
+if (lunchCalorieDataJson === null) {
     lunchCalorieData = calorieDataHardCoded;
 }
 else {
@@ -536,7 +536,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/information?a
 
 let dinnerDataJson = JSON.parse(localStorage.getItem('dinner'));
 let dinnerData;
-if (dinnerDataJson === undefined) {
+if (dinnerDataJson === null) {
     dinnerData = mealRecipeDataHardCoded;
 }
 else {
@@ -551,7 +551,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/nutritionWidg
 
 let dinnerCalorieDataJson = JSON.parse(localStorage.getItem('dinnerCalorie'));
 let dinnerCalorieData;
-if (dinnerCalorieDataJson === undefined) {
+if (dinnerCalorieDataJson === null) {
     dinnerCalorieData = calorieDataHardCoded;
 }
 else {
