@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner</title>
+    <link rel="stylesheet" href="./meal.css">
+    <script src="index.js" defer></script>
+    <script src="meal.js" defer></script>
+</head>
+
+<body>
+    <nav class="nav-bar"><img class="logo-image"
+            src="https://lh3.googleusercontent.com/OfdwBjiigPR-Wc5jjHI3y4bEbm3f8fS8c4iaEzS_q44mJP2rkcc8Oh3wgotZixQzSYk"
+            alt="logo" />
+        <p class="title">Meal Planner</p>
+    </nav>
+    <main>
+        <div class="calorie">
+            Daily Total Calorie Required Is :
+        </div>
+        <div class="generated-meal">
+            <div class="breakfast">
+                <h3>Breakfast</h3>
+                <img alt="image-1" class="image-1">
+                <p class="title-1"></p>
+                <p class="calorieTag-1">Calories : <span class="calorie-1"></span></p>
+                <div class="btnContainer-1">
+                    <button class="btn-1" onclick="btnHandler_1()">GET RECIPE</button>
+                </div>
+            </div>
+            <div class="lunch">
+                <h3>Lunch</h3>
+                <img alt="image-2" class="image-2">
+                <p class="title-2"></p>
+                <p class="calorieTag-2">Calories : <span class="calorie-2"></span></p>
+                <div class="btnContainer-2">
+                    <button class="btn-2" onclick="btnHandler_2()">GET RECIPE</button>
+                </div>
+            </div>
+            <div class="dinner">
+                <h3>Dinner</h3>
+                <img alt="image-3" class="image-3">
+                <p class="title-3"></p>
+                <p class="calorieTag-3">Calories : <span class="calorie-3"></span></p>
+                <div class="btnContainer-3">
+                    <button class="btn-3" onclick="btnHandler_3()">GET RECIPE</button>
+                </div>
+            </div>
+        </div>
+        <div id="recipe" class="btnHidden_1">
+            <div class="recipe_header">
+                <h3 class="heading">Ingredients For Recipe : <span class="recipe-title"></span></h3>
+            </div>
+            <div class="ingredients">
+                <h4>INGREDIENTS</h4>
+            </div>
+            <div class="steps">
+                <h4>STEPS</h4>
+            </div>
+            <div class="equipments">
+                <h4>EQUIPMENT</h4>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>For Support Or Feedback, Please Write To Me</p>
+        <ul class="footer-list">
+            <li><a href="https://github.com/rahul-kumar10" target="_blank"><img class="footer-image"
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="image-1" /></a></li>
+            <li><a href="mailto:rahulk.kumar780@gmail.com" target="_blank"><img class="footer-image"
+                        src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="image-1" /></a></li>
+            <li><a href="https://www.linkedin.com/in/rahulkumar780" target="_blank"><img class="footer-image"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7jpu4qij1GKYdEyQO04-UcF_6bMmqPh0PsJh0Jmm43A&s"
+                        alt="image-1" /></a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>
