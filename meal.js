@@ -475,7 +475,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?a
 
 let breakfastDataJson = JSON.parse(localStorage.getItem('breakfast'));
 let breakfastData;
-if (breakfastDataJson === null) {
+if (breakfastDataJson.status === "failure") {
     breakfastData = mealRecipeDataHardCoded;
 }
 else {
@@ -490,7 +490,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/nutritionWidg
 
 let breakfastCalorieDataJson = JSON.parse(localStorage.getItem('breakfastCalorie'));
 let breakfastCalorieData;
-if (breakfastCalorieDataJson === null) {
+if (breakfastCalorieDataJson.status === "failure") {
     breakfastCalorieData = calorieDataHardCoded;
 }
 else {
@@ -505,7 +505,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/information?a
 
 let lunchDataJson = JSON.parse(localStorage.getItem('lunch'));
 let lunchData;
-if (lunchDataJson === null) {
+if (lunchDataJson.status === "failure") {
     lunchData = mealRecipeDataHardCoded;
 }
 else {
@@ -520,7 +520,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/nutritionWidg
 
 let lunchCalorieDataJson = JSON.parse(localStorage.getItem('lunchCalorie'));
 let lunchCalorieData;
-if (lunchCalorieDataJson === null) {
+if (lunchCalorieDataJson.status === "failure") {
     lunchCalorieData = calorieDataHardCoded;
 }
 else {
@@ -536,7 +536,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/information?a
 
 let dinnerDataJson = JSON.parse(localStorage.getItem('dinner'));
 let dinnerData;
-if (dinnerDataJson === null) {
+if (dinnerDataJson.status === "failure") {
     dinnerData = mealRecipeDataHardCoded;
 }
 else {
@@ -551,7 +551,7 @@ fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/nutritionWidg
 
 let dinnerCalorieDataJson = JSON.parse(localStorage.getItem('dinnerCalorie'));
 let dinnerCalorieData;
-if (dinnerCalorieDataJson === null) {
+if (dinnerCalorieDataJson.status === "failure") {
     dinnerCalorieData = calorieDataHardCoded;
 }
 else {
