@@ -458,7 +458,7 @@ fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78
     }).catch(() => console.log("Error"))
 
 let mealDataJson = JSON.parse(localStorage.getItem('meal'));
-console.log(mealDataJson)
+
 let mealData;
 if (mealDataJson === null) {
     mealData = mealDataHardCoded;
@@ -466,7 +466,7 @@ if (mealDataJson === null) {
 else {
     mealData = mealDataJson;
 }
-console.log(mealData)
+
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
     .then((data) => {
@@ -557,7 +557,6 @@ if (dinnerCalorieDataJson === null) {
 else {
     dinnerCalorieData = dinnerCalorieDataJson;
 }
-
 
 document.querySelector(".title-1").innerHTML = mealData.meals[0].title;
 document.querySelector(".image-1").setAttribute("src", breakfastData.image);
