@@ -458,9 +458,9 @@ fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78
     }).catch(() => console.log("Error"))
 
 let mealDataJson = JSON.parse(localStorage.getItem('meal'));
-
+console.log(mealDataJson);
 let mealData;
-if (mealDataJson === null) {
+if (mealDataJson.status === "failure") {
     mealData = mealDataHardCoded;
 }
 else {
