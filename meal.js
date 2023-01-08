@@ -633,7 +633,7 @@ const calorieDataHardCoded = {
 
 //   **API CALL FOR MEAL GENERATION
 
-fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78fbb7cb906d88409&timeFrame=day&targetCalries=${totalCalorieRequired}`)
+fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=8c43e9864eac4cfaabf616953e7f0437&timeFrame=day&targetCalries=${totalCalorieRequired}`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('meal', JSON.stringify(data));
@@ -650,7 +650,7 @@ else {
 
 // ** API CALL FOR BREAKFAST MEAL
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('breakfast', JSON.stringify(data));
@@ -667,7 +667,7 @@ else {
 
 // **API CALL FOR BREAKFAST INGREDIENTS AND ITS AMOUNT
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/ingredientWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('breakfastIngredients', JSON.stringify(data));
@@ -684,7 +684,7 @@ else {
 
 // **API CALL FOR BREAKFAST MEAL EQUIPMENTS
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/equipmentWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('breakfastEquipments', JSON.stringify(data));
@@ -701,7 +701,7 @@ else {
 
 // **API CALL FOR CALORIE OBTAINED FROM BREAKFAST
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/nutritionWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('breakfastCalorie', JSON.stringify(data));
@@ -716,7 +716,7 @@ else {
     breakfastCalorieData = breakfastCalorieDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/information?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('lunch', JSON.stringify(data));
@@ -731,7 +731,7 @@ else {
     lunchData = lunchDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/ingredientWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('lunchIngredients', JSON.stringify(data));
@@ -746,7 +746,7 @@ else {
     lunchIngredientsData = lunchIngredientsDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/equipmentWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('lunchEquipments', JSON.stringify(data));
@@ -761,7 +761,7 @@ else {
     lunchEquipmentsData = lunchEquipmentsDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/nutritionWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('lunchCalorie', JSON.stringify(data));
@@ -776,7 +776,7 @@ else {
     lunchCalorieData = lunchCalorieDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/information?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('dinner', JSON.stringify(data));
@@ -791,7 +791,7 @@ else {
     dinnerData = dinnerDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/ingredientWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('dinnerIngredients', JSON.stringify(data));
@@ -806,7 +806,7 @@ else {
     dinnerIngredientsData = dinnerIngredientsDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/equipmentWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('dinnerEquipments', JSON.stringify(data));
@@ -821,7 +821,7 @@ else {
     dinnerEquipmentsData = dinnerEquipmentsDataJson;
 }
 
-fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/nutritionWidget.json?apiKey=8c43e9864eac4cfaabf616953e7f0437`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('dinnerCalorie', JSON.stringify(data));
