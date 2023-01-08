@@ -1,7 +1,7 @@
 
 let totalCalorieRequired = JSON.parse(localStorage.getItem('totalCalorieValue'));
 let spanTag = document.createElement("span");
-spanTag.innerHTML = totalCalorieRequired.toFixed(0);
+spanTag.innerHTML = totalCalorieRequired.toFixed(0) + " kcal";
 calorieElement.append(spanTag)
 
 let mealDataHardCoded = {
@@ -392,8 +392,188 @@ const mealRecipeDataHardCoded = {
     }
 }
 
+const ingredientsDataHardCoded = {
+    "ingredients": [
+        {
+            "amount": {
+                "metric": {
+                    "unit": "g",
+                    "value": 222.0
+                },
+                "us": {
+                    "unit": "cups",
+                    "value": 1.5
+                }
+            },
+            "image": "blueberries.jpg",
+            "name": "blueberries"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "",
+                    "value": 1.0
+                },
+                "us": {
+                    "unit": "",
+                    "value": 1.0
+                }
+            },
+            "image": "egg-white.jpg",
+            "name": "egg white"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "Tbsps",
+                    "value": 2.0
+                },
+                "us": {
+                    "unit": "Tbsps",
+                    "value": 2.0
+                }
+            },
+            "image": "flour.png",
+            "name": "flour"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "g",
+                    "value": 150.0
+                },
+                "us": {
+                    "unit": "cup",
+                    "value": 0.75
+                }
+            },
+            "image": "sugar-in-bowl.png",
+            "name": "granulated sugar"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "tsp",
+                    "value": 1.0
+                },
+                "us": {
+                    "unit": "tsp",
+                    "value": 1.0
+                }
+            },
+            "image": "lemon-juice.jpg",
+            "name": "fresh lemon juice"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "pinch",
+                    "value": 1.0
+                },
+                "us": {
+                    "unit": "pinch",
+                    "value": 1.0
+                }
+            },
+            "image": "ground-nutmeg.jpg",
+            "name": "nutmeg"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "",
+                    "value": 2.0
+                },
+                "us": {
+                    "unit": "",
+                    "value": 2.0
+                }
+            },
+            "image": "pie-crust.jpg",
+            "name": "pie dough round"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "Tbsps",
+                    "value": 2.0
+                },
+                "us": {
+                    "unit": "Tbsps",
+                    "value": 2.0
+                }
+            },
+            "image": "tapioca-pearls.png",
+            "name": "quick cooking tapioca"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "g",
+                    "value": 305.0
+                },
+                "us": {
+                    "unit": "cups",
+                    "value": 2.5
+                }
+            },
+            "image": "rhubarb.jpg",
+            "name": "trimmed rhubarb"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "tsps",
+                    "value": 0.333
+                },
+                "us": {
+                    "unit": "tsps",
+                    "value": 0.333
+                }
+            },
+            "image": "salt.jpg",
+            "name": "salt"
+        },
+        {
+            "amount": {
+                "metric": {
+                    "unit": "Tbsps",
+                    "value": 0.5
+                },
+                "us": {
+                    "unit": "Tbsps",
+                    "value": 0.5
+                }
+            },
+            "image": "butter-sliced.jpg",
+            "name": "unsalted butter"
+        }
+    ]
+}
+
+const equipmentDataHardCoded = {
+    "equipment": [
+        {
+            "image": "pie-pan.png",
+            "name": "pie form"
+        },
+        {
+            "image": "bowl.jpg",
+            "name": "bowl"
+        },
+        {
+            "image": "oven.jpg",
+            "name": "oven"
+        },
+        {
+            "image": "pan.png",
+            "name": "frying pan"
+        }
+    ]
+}
+
 const calorieDataHardCoded = {
-    "nutrients": [
+    "bad": [
         {
             "name": "Calories",
             "amount": 316.49,
@@ -447,9 +627,11 @@ const calorieDataHardCoded = {
             "amount": 3.79,
             "unit": "g",
             "percentOfDailyNeeds": 7.57
-        }
+        },
     ]
 }
+
+//   **API CALL FOR MEAL GENERATION
 
 fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78fbb7cb906d88409&timeFrame=day&targetCalries=${totalCalorieRequired}`)
     .then((response) => response.json())
@@ -458,7 +640,6 @@ fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78
     }).catch(() => console.log("Error"))
 
 let mealDataJson = JSON.parse(localStorage.getItem('meal'));
-console.log(mealDataJson);
 let mealData;
 if (mealDataJson.status === "failure") {
     mealData = mealDataHardCoded;
@@ -466,6 +647,8 @@ if (mealDataJson.status === "failure") {
 else {
     mealData = mealDataJson;
 }
+
+// ** API CALL FOR BREAKFAST MEAL
 
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
@@ -481,6 +664,42 @@ if (breakfastDataJson.status === "failure") {
 else {
     breakfastData = breakfastDataJson;
 }
+
+// **API CALL FOR BREAKFAST INGREDIENTS AND ITS AMOUNT
+
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('breakfastIngredients', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let breakfastIngredientsDataJson = JSON.parse(localStorage.getItem('breakfastIngredients'));
+let breakfastIngredientsData;
+if (breakfastIngredientsDataJson.status === "failure") {
+    breakfastIngredientsData = ingredientsDataHardCoded;
+}
+else {
+    breakfastIngredientsData = breakfastIngredientsDataJson;
+}
+
+// **API CALL FOR BREAKFAST MEAL EQUIPMENTS
+
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('breakfastEquipments', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let breakfastEquipmentsDataJson = JSON.parse(localStorage.getItem('breakfastEquipments'));
+let breakfastEquipmentsData;
+if (breakfastEquipmentsDataJson.status === "failure") {
+    breakfastEquipmentsData = equipmentDataHardCoded;
+}
+else {
+    breakfastEquipmentsData = breakfastEquipmentsDataJson;
+}
+
+// **API CALL FOR CALORIE OBTAINED FROM BREAKFAST
 
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[0].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
@@ -512,13 +731,43 @@ else {
     lunchData = lunchDataJson;
 }
 
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('lunchIngredients', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let lunchIngredientsDataJson = JSON.parse(localStorage.getItem('lunchIngredients'));
+let lunchIngredientsData;
+if (lunchIngredientsDataJson.status === "failure") {
+    lunchIngredientsData = ingredientsDataHardCoded;
+}
+else {
+    lunchIngredientsData = lunchIngredientsDataJson;
+}
+
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('lunchEquipments', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let lunchEquipmentsDataJson = JSON.parse(localStorage.getItem('breakfastEquipments'));
+let lunchEquipmentsData;
+if (lunchEquipmentsDataJson.status === "failure") {
+    lunchEquipmentsData = equipmentDataHardCoded;
+}
+else {
+    lunchEquipmentsData = lunchEquipmentsDataJson;
+}
+
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[1].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('lunchCalorie', JSON.stringify(data));
     }).catch(() => console.log("Error"))
 
-let lunchCalorieDataJson = JSON.parse(localStorage.getItem('lunchCalorie'));
+let lunchCalorieDataJson = JSON.parse(localStorage.getItem('breakfastCalorie'));
 let lunchCalorieData;
 if (lunchCalorieDataJson.status === "failure") {
     lunchCalorieData = calorieDataHardCoded;
@@ -526,7 +775,6 @@ if (lunchCalorieDataJson.status === "failure") {
 else {
     lunchCalorieData = lunchCalorieDataJson;
 }
-
 
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
@@ -543,13 +791,43 @@ else {
     dinnerData = dinnerDataJson;
 }
 
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/ingredientWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('dinnerIngredients', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let dinnerIngredientsDataJson = JSON.parse(localStorage.getItem('dinnerIngredients'));
+let dinnerIngredientsData;
+if (dinnerIngredientsDataJson.status === "failure") {
+    dinnerIngredientsData = ingredientsDataHardCoded;
+}
+else {
+    dinnerIngredientsData = dinnerIngredientsDataJson;
+}
+
+fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/equipmentWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('dinnerEquipments', JSON.stringify(data));
+    }).catch(() => console.log("Error"))
+
+let dinnerEquipmentsDataJson = JSON.parse(localStorage.getItem('dinnerEquipments'));
+let dinnerEquipmentsData;
+if (dinnerEquipmentsDataJson.status === "failure") {
+    dinnerEquipmentsData = equipmentDataHardCoded;
+}
+else {
+    dinnerEquipmentsData = dinnerEquipmentsDataJson;
+}
+
 fetch(`https://api.spoonacular.com/recipes/${mealData.meals[2].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem('dinnerCalorie', JSON.stringify(data));
     }).catch(() => console.log("Error"))
 
-let dinnerCalorieDataJson = JSON.parse(localStorage.getItem('dinnerCalorie'));
+let dinnerCalorieDataJson = JSON.parse(localStorage.getItem('breakfastCalorie'));
 let dinnerCalorieData;
 if (dinnerCalorieDataJson.status === "failure") {
     dinnerCalorieData = calorieDataHardCoded;
@@ -560,15 +838,15 @@ else {
 
 document.querySelector(".title-1").innerHTML = mealData.meals[0].title;
 document.querySelector(".image-1").setAttribute("src", breakfastData.image);
-document.querySelector(".calorie-1").innerText = breakfastCalorieData.nutrients[0].amount.toFixed(0);
+document.querySelector(".calorie-1").innerText = parseInt(breakfastCalorieData.bad[0].amount);
 
 document.querySelector(".title-2").innerHTML = mealData.meals[1].title;
 document.querySelector(".image-2").setAttribute("src", lunchData.image);
-document.querySelector(".calorie-2").innerText = lunchCalorieData.nutrients[0].amount.toFixed(0);
+document.querySelector(".calorie-2").innerText = parseInt(lunchCalorieData.bad[0].amount);
 
 document.querySelector(".title-3").innerHTML = mealData.meals[2].title;
 document.querySelector(".image-3").setAttribute("src", dinnerData.image);
-document.querySelector(".calorie-3").innerText = dinnerCalorieData.nutrients[0].amount.toFixed(0);
+document.querySelector(".calorie-3").innerText = parseInt(dinnerCalorieData.bad[0].amount);
 
 function btnHandler_1() {
     if (document.querySelector("#recipe").getAttribute("class") == "btnHidden_1") {
@@ -580,16 +858,21 @@ function btnHandler_1() {
         let ulTag_2 = document.createElement("ul");
         let ulTag_3 = document.createElement("ul");
 
-        for (let i = 0; i < breakfastData.extendedIngredients.length; i++) {
+        for (let i = 0; i < breakfastIngredientsData.ingredients.length; i++) {
+            let ingredientValue = 0, ingredientUnit = "";
             let liTag_1 = document.createElement("li");
             let liTag_2 = document.createElement("li");
-            let liTag_3 = document.createElement("li");
-            liTag_1.innerHTML = breakfastData.extendedIngredients[i].aisle;
-            liTag_2.innerHTML = breakfastData.extendedIngredients[i].amount ? breakfastData.extendedIngredients[i].amount : "-";
-            liTag_3.innerHTML = breakfastData.extendedIngredients[i].measures.metric.unitLong ? breakfastData.extendedIngredients[i].measures.metric.unitLong : "-";
+            liTag_1.innerHTML = breakfastIngredientsData.ingredients[i].name;
+            ingredientValue = breakfastIngredientsData.ingredients[i].amount.us.value;
+            ingredientUnit = breakfastIngredientsData.ingredients[i].amount.us.unit;
+            liTag_2.innerHTML = ingredientValue + " " + ingredientUnit;
             ulTag_1.appendChild(liTag_1);
             ulTag_2.appendChild(liTag_2);
-            ulTag_3.appendChild(liTag_3);
+        }
+        for (let i = 0; i < breakfastEquipmentsData.equipment.length; i++) {
+            let liTag = document.createElement("li");
+            liTag.innerHTML = breakfastEquipmentsData.equipment[i].name;
+            ulTag_3.appendChild(liTag);
         }
         document.querySelector(".ingredients").innerHTML = "<h4>INGREDIENTS</h4>";
         document.querySelector(".ingredients").appendChild(ulTag_1);
@@ -602,7 +885,6 @@ function btnHandler_1() {
     else {
         document.querySelector("#recipe").removeAttribute("class");
         document.querySelector("#recipe").setAttribute("class", "btnHidden_1")
-        document.querySelector(".ingredients").removeChild("ul");
     }
 }
 function btnHandler_2() {
@@ -614,16 +896,21 @@ function btnHandler_2() {
         let ulTag_1 = document.createElement("ul");
         let ulTag_2 = document.createElement("ul");
         let ulTag_3 = document.createElement("ul");
-        for (let i = 0; i < lunchData.extendedIngredients.length; i++) {
+        for (let i = 0; i < lunchIngredientsData.ingredients.length; i++) {
+            let ingredientValue = 0, ingredientUnit = "";
             let liTag_1 = document.createElement("li");
             let liTag_2 = document.createElement("li");
-            let liTag_3 = document.createElement("li");
-            liTag_1.innerHTML = lunchData.extendedIngredients[i].aisle;
-            liTag_2.innerHTML = lunchData.extendedIngredients[i].amount ? lunchData.extendedIngredients[i].amount : "-";
-            liTag_3.innerHTML = lunchData.extendedIngredients[i].measures.metric.unitLong ? lunchData.extendedIngredients[i].measures.metric.unitLong : "-";
+            liTag_1.innerHTML = lunchIngredientsData.ingredients[i].name;
+            ingredientValue = lunchIngredientsData.ingredients[i].amount.us.value;
+            ingredientUnit = lunchIngredientsData.ingredients[i].amount.us.unit;
+            liTag_2.innerHTML = ingredientValue + " " + ingredientUnit;
             ulTag_1.appendChild(liTag_1);
             ulTag_2.appendChild(liTag_2);
-            ulTag_3.appendChild(liTag_3);
+        }
+        for (let i = 0; i < lunchEquipmentsData.equipment.length; i++) {
+            let liTag = document.createElement("li");
+            liTag.innerHTML = lunchEquipmentsData.equipment[i].name;
+            ulTag_3.appendChild(liTag);
         }
         document.querySelector(".ingredients").innerHTML = "<h4>INGREDIENTS</h4>";
         document.querySelector(".steps").innerHTML = "<h4>STEPS</h4>";
@@ -646,16 +933,21 @@ function btnHandler_3() {
         let ulTag_1 = document.createElement("ul");
         let ulTag_2 = document.createElement("ul");
         let ulTag_3 = document.createElement("ul");
-        for (let i = 0; i < dinnerData.extendedIngredients.length; i++) {
+        for (let i = 0; i < dinnerIngredientsData.ingredients.length; i++) {
+            let ingredientValue = 0, ingredientUnit = "";
             let liTag_1 = document.createElement("li");
             let liTag_2 = document.createElement("li");
-            let liTag_3 = document.createElement("li");
-            liTag_1.innerHTML = dinnerData.extendedIngredients[i].aisle;
-            liTag_2.innerHTML = dinnerData.extendedIngredients[i].amount ? dinnerData.extendedIngredients[i].amount : "-";
-            liTag_3.innerHTML = dinnerData.extendedIngredients[i].measures.metric.unitLong ? dinnerData.extendedIngredients[i].measures.metric.unitLong : "-";
+            liTag_1.innerHTML = dinnerIngredientsData.ingredients[i].name;
+            ingredientValue = dinnerIngredientsData.ingredients[i].amount.us.value;
+            ingredientUnit = dinnerIngredientsData.ingredients[i].amount.us.unit;
+            liTag_2.innerHTML = ingredientValue + " " + ingredientUnit;
             ulTag_1.appendChild(liTag_1);
             ulTag_2.appendChild(liTag_2);
-            ulTag_3.appendChild(liTag_3);
+        }
+        for (let i = 0; i < dinnerEquipmentsData.equipment.length; i++) {
+            let liTag = document.createElement("li");
+            liTag.innerHTML = dinnerEquipmentsData.equipment[i].name;
+            ulTag_3.appendChild(liTag);
         }
         document.querySelector(".ingredients").innerHTML = "<h4>INGREDIENTS</h4>";
         document.querySelector(".steps").innerHTML = "<h4>STEPS</h4>";

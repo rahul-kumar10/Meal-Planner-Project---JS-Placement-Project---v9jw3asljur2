@@ -205,7 +205,7 @@ h3 {
     margin-left: 2rem;
 }
 
-.ingredients>ul>li {
+.ingredients>ul>li, .steps>ul>li {
     margin-left: 0;
 }
 
