@@ -63,7 +63,7 @@ li {
 }
 
 .calorie {
-    width: 30vw;
+    width: 40vw;
     height: 5vh;
     margin: 1rem;
     background-color: lightgrey;
@@ -72,7 +72,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 35vw;
+    margin-left: 30vw;
     font-weight: 500;
     margin-top: 5rem;
 }
@@ -338,8 +338,14 @@ h4 {
     }
 
     .calorie {
-        width: 60vw;
-        margin-left: 20vw;
+        width: 90%;
+        margin-left: 5%;
         margin-top: 6rem;
+        font-size: 0.8rem;
+    }
+    span {
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-left: 0.2rem;
     }
 }
