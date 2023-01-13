@@ -84,7 +84,7 @@ span {
 }
 
 .generated-meal {
-    margin: 0 3rem 0 3rem;
+    margin: 0 3rem 5.5rem 3rem;
     height: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
