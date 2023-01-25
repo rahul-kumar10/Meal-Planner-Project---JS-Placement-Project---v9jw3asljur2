@@ -34,7 +34,7 @@ function buttonHandler() {
         mealGenerationApi();
         setTimeout(() => {
             window.location.href = 'meal.html';
-        }, 3000)
+        }, 2000);
     }
     else {
         alert("Please Fill The Required Field")
@@ -52,6 +52,7 @@ logoElement.addEventListener("click", () => {
 });
 
 
+
 //   **API CALL FOR MEAL GENERATION
 function mealGenerationApi() {
     let totalCalorieRequired = JSON.parse(localStorage.getItem('totalCalorieValue'));
@@ -62,6 +63,7 @@ function mealGenerationApi() {
             mealImageAndCalorieApiFunctions(data);
 
         }).catch((err) => console.log(err))
+
 }
 
 // ** FUNCTION FOR MEAL IMAGE AND ITS CALORIE GENERATION
@@ -102,4 +104,5 @@ function mealImageAndCalorieApiFunctions(data) {
         .then((data) => {
             localStorage.setItem("dinnerCalorie", JSON.stringify(data))
         }).catch((err) => console.log(err))
+
 }
