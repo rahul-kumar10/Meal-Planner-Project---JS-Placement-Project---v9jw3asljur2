@@ -32,9 +32,7 @@ function buttonHandler() {
         }
         localStorage.setItem('totalCalorieValue', JSON.stringify(totalCalorie));
         mealGenerationApi();
-        setTimeout(() => {
-            window.location.href = 'meal.html';
-        }, 2000);
+        alert("Please wait fetching approriate meal....")
     }
     else {
         alert("Please Fill The Required Field")
@@ -54,55 +52,47 @@ logoElement.addEventListener("click", () => {
 
 
 //   **API CALL FOR MEAL GENERATION
-function mealGenerationApi() {
+async function mealGenerationApi() {
     let totalCalorieRequired = JSON.parse(localStorage.getItem('totalCalorieValue'));
-    fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78fbb7cb906d88409&timeFrame=day&targetCalries=${totalCalorieRequired}`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("mealData", JSON.stringify(data))
-            mealImageAndCalorieApiFunctions(data);
-
-        }).catch((err) => console.log(err))
-
+    let response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=76c9afdf208349d78fbb7cb906d88409&timeFrame=day&targetCalries=${totalCalorieRequired}`)
+    let data = await response.json()
+    localStorage.setItem("mealData", JSON.stringify(data))
+    await mealImageAndCalorieApiFunctions(data)
 }
 
 // ** FUNCTION FOR MEAL IMAGE AND ITS CALORIE GENERATION
-function mealImageAndCalorieApiFunctions(data) {
+async function mealImageAndCalorieApiFunctions(data) {
     // ** API CALL FOR BREAKFAST MEAL IMAGE
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[0].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("breakfastImage", JSON.stringify(data))
-        }).catch((err) => console.log(err))
+    let response1 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[0].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data1 = await response1.json();
+    localStorage.setItem("breakfastImage", JSON.stringify(data1))
 
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[1].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("lunchImage", JSON.stringify(data))
-        }).catch((err) => console.log(err))
 
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[2].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("dinnerImage", JSON.stringify(data))
-        }).catch((err) => console.log(err))
+    let response2 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[1].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data2 = await response2.json();
+    localStorage.setItem("lunchImage", JSON.stringify(data2))
 
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[0].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("breakfastCalorie", JSON.stringify(data))
-        }).catch((err) => console.log(err))
 
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[1].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("lunchCalorie", JSON.stringify(data))
-        }).catch((err) => console.log(err))
+    let response3 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[2].id}/information?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data3 = await response3.json()
+    localStorage.setItem("dinnerImage", JSON.stringify(data3))
 
-    fetch(`https://api.spoonacular.com/recipes/${data.meals[2].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
-        .then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("dinnerCalorie", JSON.stringify(data))
-        }).catch((err) => console.log(err))
+
+    let response4 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[0].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data4 = await response4.json();
+    localStorage.setItem("breakfastCalorie", JSON.stringify(data4))
+
+
+    let response5 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[1].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data5 = await response5.json()
+    localStorage.setItem("lunchCalorie", JSON.stringify(data5))
+
+
+    let response6 = await fetch(`https://api.spoonacular.com/recipes/${data.meals[2].id}/nutritionWidget.json?apiKey=76c9afdf208349d78fbb7cb906d88409`)
+    let data6 = await response6.json();
+    localStorage.setItem("dinnerCalorie", JSON.stringify(data6))
+
+
+    window.location.href = 'meal.html';
 
 }
